@@ -2,6 +2,8 @@
 
 This plugin enables JWT authentication and authorization for VerneMQ. Currently,  MQTT 3.1 and 3.1.1 clients are supported by the plugin. The JWTs need to be signed using the HS512 algorithm.
 
+Forked from ico77/vernemq_auth_plugin, fixed repos and dependencies and added a build script that uses the vernemq/vmq-plugin-bundler. 
+
 ## How does it work
 
 The plugin uses the claims from the token to authenticate users and authorize them to publish/subscribe to topics.
@@ -35,7 +37,7 @@ Example JWT payload:
 ## Build
 
 ```
-./rebar3 compile
+./build.sh
 ```
 
 Enabling the plugin:
