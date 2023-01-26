@@ -10,26 +10,23 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container:
-      image: vernemq/vmq-plugin-bundler:latest
-      options: --user root
-      env:
-        VERNEMQ_VERSION: 1.12.6.2
-        BUNDLER_CONFIG: ./rebar.config
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run Build Script
-        run: ./rebar-build.sh
-        shell: bash
-        working-directory: $GITHUB_WORKSPACE
-
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
+        with:
+            image: aschmelyun/cleaver:latest
+            options: |
+                -v ${{ github.workspace }}:/vmq-jwt-auth-plugin \
+                -v ${{ github.workspace }}/dist:/bundler \
+                -v ${{ github.workspace }}/rebar-build.sh:/run.sh \
+                -e VERNEMQ_VERSION=1.12.6.2 \
+                -e BUNDLER_CONFIG=/vmq-jwt-auth-plugin/rebar.config
       - name: Upload artefact
         uses: actions/upload-artifact@v3
         with:
           name: vmq-jwt-auth-plugin.tar.gz
-          path: ./bundler
+          path: $GITHUB_WORKSPACE/dist
           if-no-files-found: error
