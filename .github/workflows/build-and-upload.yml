@@ -23,12 +23,13 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run Build Script
-        run: $GITHUB_WORKSPACE/rebar-build.sh
+        run: ./rebar-build.sh
         shell: bash
+        working-directory: $GITHUB_WORKSPACE
 
       - name: Upload artefact
         uses: actions/upload-artifact@v3
         with:
           name: vmq-jwt-auth-plugin.tar.gz
-          path: $GITHUB_WORKSPACE/bundler
+          path: ./bundler
           if-no-files-found: error
