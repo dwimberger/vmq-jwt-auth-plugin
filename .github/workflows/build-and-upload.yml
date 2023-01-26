@@ -24,7 +24,7 @@ jobs:
                 -v ${{ github.workspace }}/rebar-build.sh:/run.sh
                 -e VERNEMQ_VERSION=1.12.6.2
                 -e BUNDLER_CONFIG=/vmq-jwt-auth-plugin/rebar.config
-            run: /vmq-jwt-auth-plugin/run.sh
+            run: /run.sh
       - name: Upload artefact
         uses: actions/upload-artifact@v3
         with:
