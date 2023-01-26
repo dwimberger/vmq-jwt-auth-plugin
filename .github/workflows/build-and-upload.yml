@@ -17,12 +17,12 @@ jobs:
       - name: Run the build process with Docker
         uses: addnab/docker-run-action@v3
         with:
-            image: aschmelyun/cleaver:latest
+            image: vernemq/vmq-plugin-bundler
             options: |
-                -v ${{ github.workspace }}:/vmq-jwt-auth-plugin \
-                -v ${{ github.workspace }}/dist:/bundler \
-                -v ${{ github.workspace }}/rebar-build.sh:/run.sh \
-                -e VERNEMQ_VERSION=1.12.6.2 \
+                -v ${{ github.workspace }}:/vmq-jwt-auth-plugin
+                -v ${{ github.workspace }}/dist:/bundler
+                -v ${{ github.workspace }}/rebar-build.sh:/run.sh
+                -e VERNEMQ_VERSION=1.12.6.2
                 -e BUNDLER_CONFIG=/vmq-jwt-auth-plugin/rebar.config
       - name: Upload artefact
         uses: actions/upload-artifact@v3
