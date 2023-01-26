@@ -15,7 +15,6 @@ jobs:
       options: --user root
       env:
         VERNEMQ_VERSION: 1.12.6.2
-        BUNDLER_CONFIG: $GITHUB_WORKSPACE/rebar.config
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
