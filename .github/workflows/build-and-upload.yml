@@ -29,5 +29,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: vmq-jwt-auth-plugin.tar.gz
-          path: $GITHUB_WORKSPACE/dist
+          path: $GITHUB_WORKSPACE/vmq-jwt-auth-plugin/dist
           if-no-files-found: error
